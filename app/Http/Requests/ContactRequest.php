@@ -13,7 +13,7 @@ trait ContactRequest {
         $data = $request->all();
 
         $rules = array(
-            'name'                => 'bail|required|string',
+            'name'                => 'bail|required|string|min:5',
             'contact'             => 'bail|required|numeric|digits:9',
             'email'               => 'bail|required|email',
             'address'             => 'bail|required|string',

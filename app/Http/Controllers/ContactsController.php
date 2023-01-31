@@ -134,9 +134,24 @@ class ContactsController extends Controller
             }
            
         try{
+            
+            $email = $request['email'];
+            $contact = $request['contact'];
+            
+            $verification_contact = DB::table('contacts as cts')
+            ->where([['cts.email', '=', $email], ['cts.contact', '=', $contact]]) 
+            ->select(
+                'cts.*',
+            )
+            ->first();
+            
+            if($verification_contact != null){
+                return redirect('/edit/'.$id)->with('message', 'The contact is edit already');
+            }
+            
+            
             $contact = $request->except('_token', '_method');
             $contact = Contacts::where('id', '=', $id)->update($contact);
-            
             $contact = Contacts::findOrFail($id);
         
         
