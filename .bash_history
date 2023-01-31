@@ -26,3 +26,27 @@ php artisan make:view contact.form.form
 php artisan make:controller RegisterController --resource
 php artisan make:view auth.register
 git add .
+git init
+git add .
+git config --global initdefaultBranch https://github.com/ProyectosMoisesGarcia/alfasoft.git
+git config --global initdefaultBranch alfasoft.git
+git remote add origin https://github.com/ProyectosMoisesGarcia/alfasoft.git
+git commit -m "first commit"
+git config --global user.email "god_of_wolfs@hotmail.es"
+git config --global user.name "Moises Garcia"
+git commit -m "Alfasoft"
+git branch -M main
+git push -u origin main
+git push -u origin main
+git push -u origin main
+git push -u origin main
+git push -u origin main
+git push -u origin main
+git push -u origin main
+git push -u origin main
+git push -u origin main
+git push -u origin main
+git push -u origin main
+git push -u origin main
+php artisan make:request ContactRequest
+git push -u origin main

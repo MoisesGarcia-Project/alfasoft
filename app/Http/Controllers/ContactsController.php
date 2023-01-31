@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 use App\Models\Contacts;
+use App\Http\Requests\ContactRequest;
 
 
 class ContactsController extends Controller
 {
+    
+     use ContactRequest;
     /**
      * Display a listing of the resource.
      *
@@ -54,6 +59,11 @@ class ContactsController extends Controller
     public function store(Request $request)
     {
         //
+         $validation = $this->ContactRequest($request);
+            if (!$validation['validated']) {
+                return redirect('/create')->with('message', $validation['message']);
+            }
+        
         try{
             $email = $request['email'];
             $contact = $request['contact'];
@@ -117,6 +127,11 @@ class ContactsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        
+        $validation = $this->ContactRequest($request);
+            if (!$validation['validated']) {
+                return redirect('/edit/'.$id)->with('message', $validation['message']);
+            }
            
         try{
             $contact = $request->except('_token', '_method');
